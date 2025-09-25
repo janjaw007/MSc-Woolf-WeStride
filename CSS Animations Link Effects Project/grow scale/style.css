@@ -1,0 +1,65 @@
+body {
+  background-color: khaki;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100dvh;
+}
+
+h2 {
+  margin: 12px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 300px;
+}
+
+h2.first {
+  background-color: aquamarine;
+}
+
+h2.second {
+  background-color: cadetblue;
+}
+
+.link {
+  text-decoration: none;
+  color: #222;
+  font-size: 48px;
+  display: inline-block;
+  position: relative;
+}
+
+.first .link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0px;
+  background-color: red;
+  transition: height 0.5s ease-in;
+}
+
+.first .link:hover::after {
+  height: 5px;
+}
+
+.second .link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 5px;
+  background-color: red;
+  transform: scaleY(0);
+  transition: transform 0.5s ease-in;
+}
+
+.second .link:hover::after {
+  transform: scaleY(1);
+}

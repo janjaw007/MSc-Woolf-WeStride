@@ -1,0 +1,50 @@
+body {
+  background: url("https://cdn.pixabay.com/photo/2025/08/17/09/42/village-9779463_1280.png");
+}
+
+.polaroid-gallery-title {
+  text-align: center;
+  background-color: aliceblue;
+  font-size: 32px;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: 400;
+}
+
+.polaroid-card {
+  display: inline-block;
+  background-color: rgba(250, 235, 215, 1);
+  padding: 10px;
+  box-shadow: 4px 4px 8px 3px white;
+  transition: transform 0.25s ease-out;
+}
+
+.polaroid-card:nth-of-type(even) {
+  transform: rotate(15deg);
+}
+
+.polaroid-card:nth-of-type(odd) {
+  transform: rotate(-10deg);
+}
+
+.polaroid-card::before {
+  content: "";
+  display: block;
+  width: 150px;
+  height: 40px;
+  background-color: whitesmoke;
+  transform: translate(-60px, -10px) rotate(-30deg);
+}
+
+.polaroid-card:hover {
+  transform: rotate(360deg) scale(1.25);
+}
+
+.polaroid-card-caption {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+  letter-spacing: 2px;
+  margin-top: 3px;
+}

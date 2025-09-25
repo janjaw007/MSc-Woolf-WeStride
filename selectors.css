@@ -1,0 +1,53 @@
+body {
+  background-color: #bdc3c7;
+}
+
+h1 {
+  color: #9b59b6;
+}
+
+h1:hover {
+  color: rgb(0, 0, 255);
+}
+
+div:nth-of-type(3) p {
+  background-color: #ffc0cb;
+}
+
+div:nth-of-type(3) * {
+  color: #ffffff;
+  font-size: 20px;
+}
+
+h2 {
+  color: rgb(255, 165, 0);
+}
+
+li {
+  color: rgb(0, 0, 255);
+}
+
+p {
+  background-color: #ffff00;
+}
+
+div p {
+  font-size: 25px;
+}
+
+input[type="text"] {
+  background-color: #808080;
+}
+
+label {
+  text-transform: uppercase;
+}
+
+#special::first-letter {
+  color: #008000;
+  font-size: 100px;
+}
+
+a:active {
+  color: rgb(128, 128, 128);
+}

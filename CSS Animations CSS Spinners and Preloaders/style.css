@@ -1,0 +1,213 @@
+body {
+  background-color: blanchedalmond;
+}
+
+.classic-spinner {
+  width: 50px;
+  height: 50px;
+  border: 10px solid white;
+  border-top: 10px solid blueviolet;
+  border-radius: 50%;
+  margin: auto auto;
+  animation: rotate 2s infinite linear;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.grow-spinner {
+  width: 50px;
+  height: 50px;
+  background-color: blueviolet;
+  margin: 50px auto;
+  border-radius: 50%;
+  animation: grow 2s linear infinite;
+}
+
+@keyframes grow {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.three-dot-spinner {
+  width: 100px;
+  height: 50px;
+  margin: 50px auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: blueviolet;
+  border-radius: 50%;
+}
+
+.dot-1 {
+  animation: grow-shrink 1s linear infinite 0.2s;
+}
+.dot-2 {
+  animation: grow-shrink 1s linear infinite 0.4s;
+}
+.dot-3 {
+  animation: grow-shrink 1s linear infinite 0.6s;
+}
+
+/* .dot-3 {
+  animation: grow 0.5s linear infinite 1s;
+} */
+
+@keyframes grow-shrink {
+  0% {
+    transform: scale(0.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0.2);
+  }
+}
+
+.heart {
+  width: 50px;
+  height: 40px;
+  margin: 50px auto;
+  position: relative;
+  animation: heart-beat 2s ease-in-out infinite;
+}
+
+.heart::before,
+.heart::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 26px;
+  height: 40px;
+  border-radius: 50px 50px 0 0;
+  background: blueviolet;
+}
+
+.heart::before {
+  left: 25.5px;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+}
+
+.heart::after {
+  left: 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+}
+
+@keyframes heart-beat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.box {
+  width: 50px;
+  height: 50px;
+  border: 5px solid white;
+  margin: 20px auto;
+  position: relative;
+  animation: rotate-outer-box 2s linear infinite;
+  animation-direction: normal;
+}
+
+.box::before {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  left: 50%;
+  top: 50%;
+  border: 5px solid white;
+  animation: rotate-inner-box 1s linear infinite;
+  animation-direction: reverse;
+}
+
+@keyframes rotate-outer-box {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate-inner-box {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.wave {
+  display: flex;
+  margin: 50px auto;
+  justify-content: center;
+  /* align-items: flex-end; */
+}
+
+.step {
+  width: 10px;
+  height: 10px;
+  background: red;
+  margin: 5px;
+  animation-name: waves;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+}
+
+.step1 {
+  animation-delay: 0.2s;
+}
+.step2 {
+  animation-delay: 0.4s;
+}
+.step3 {
+  animation-delay: 0.6s;
+}
+.step4 {
+  animation-delay: 0.8s;
+}
+.step5 {
+  animation-delay: 1s;
+}
+
+@keyframes waves {
+  0% {
+    height: 10px;
+  }
+  50% {
+    height: 50px;
+    transform: translateY(-25px);
+  }
+  100% {
+    height: 10px;
+  }
+}

@@ -1,0 +1,115 @@
+body {
+  background-color: khaki;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100dvh;
+}
+
+h2 {
+  margin: 12px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+}
+
+h2.first {
+  background-color: aquamarine;
+}
+
+h2.second {
+  background-color: cadetblue;
+}
+
+h2.third {
+  background-color: azure;
+}
+
+h2.forth {
+  background-color: violet;
+}
+
+.link {
+  text-decoration: none;
+  color: #222;
+  font-size: 48px;
+  display: inline-block;
+  position: relative;
+}
+
+.first .link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 5px;
+  background-color: red;
+  transition: width 0.5s ease-in;
+}
+
+.first .link:hover::after {
+  width: 100%;
+}
+
+.second .link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 5px;
+  background-color: red;
+  transition: width 0.5s ease-in;
+}
+
+.second .link:hover::after {
+  width: 100%;
+}
+
+.third .link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 5px;
+  background-color: red;
+  transform: scaleX(0);
+  transition: transform 0.5s ease-in;
+}
+
+.third .link:hover::after {
+  transform: scaleX(1);
+}
+
+.forth .link::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 5px;
+  background-color: red;
+  transition: width 0.5s ease-in;
+}
+
+.forth .link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 5px;
+  background-color: red;
+  transition: width 0.5s ease-in;
+}
+
+.forth .link:hover::before,
+.forth .link:hover::after {
+  width: 50%;
+}
