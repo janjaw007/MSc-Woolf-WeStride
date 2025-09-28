@@ -167,6 +167,81 @@ body {
 .following {
   color: #71767b;
 }
+
+.tweet-box {
+  /* height: 116px; */
+  padding: 0 16px;
+  border-bottom: 1px solid #2f3336;
+  display: flex;
+}
+
+.profile-img {
+  margin-right: 8px;
+  padding-top: 12px;
+}
+
+.img-profile {
+  height: 40px;
+  width: 40px;
+  border-radius: 40px;
+  background-color: #71767b;
+}
+
+.tweet-section {
+  flex: 1;
+}
+.tweet-input {
+  padding: 12px 0;
+  height: 56px;
+}
+.tweet-input input[type="text"] {
+  background-color: transparent;
+  color: white;
+  display: block;
+  font-size: 15px;
+  width: 100%;
+  height: 40px;
+  border: none;
+  outline: none;
+}
+
+.icon-post {
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 8px;
+}
+
+.icon img {
+  width: 28px;
+  height: 28px;
+  /* padding-right: 7px; */
+  padding: 5px;
+  margin-right: 7px;
+}
+
+.icon img:first-child {
+  margin-left: -5px;
+}
+
+.icon img:hover {
+  background-color: rgba(29, 155, 240, 0.2);
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.btn-post button {
+  background-color:   width: 66px;;
+  width: 66px;
+  height: 34px;
+  border-radius: 66px;
+  font-weight: 700;
+  border: 0;
+  outline: 0;
+  cursor: pointer;
+}
+
 .search-box {
   flex: 1;
 }
