@@ -306,9 +306,20 @@ body {
   height: 16px;
 }
 
-.tweet-feed-top-more > img {
+.tweet-feed-top-more {
+  cursor: pointer;
+  display: inline-flex;
+  border-radius: 50%;
   width: 18.75px;
   height: 18.75px;
+  transition: background-color 0.2s linear;
+}
+
+.tweet-feed-top-more:hover {
+  background-color: rgba(29, 155, 240, 0.2);
+}
+
+.tweet-feed-top-more > img {
 }
 
 .tweet-feed-mid {
