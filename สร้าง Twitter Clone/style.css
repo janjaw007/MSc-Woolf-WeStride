@@ -366,7 +366,7 @@ body {
 
 .search-box-content {
   margin-top: 10px;
-  width: 350px;
+  width: 348px;
   margin-left: 25px;
   display: flex;
   flex-direction: column;
@@ -405,12 +405,14 @@ body {
   height: 14px;
 }
 
-.trending-section {
+.trending-section,
+.follow-section {
   display: flex;
   flex-direction: column;
 }
 
-.trending-title {
+.trending-title,
+.follow-title {
   height: 48px;
   padding: 12px 16px;
   font-weight: 700;
@@ -492,4 +494,68 @@ body {
   background-color: rgba(113, 118, 123, 0.1);
   transition: background-color 0.2s linear;
   cursor: pointer;
+}
+
+.follow-feed {
+  height: 65px;
+  padding: 12px 16px;
+  border-left: 1px solid #2f3336;
+  border-right: 1px solid #2f3336;
+  display: flex;
+}
+.follow-feed > .img-profile {
+  margin-right: 8px;
+}
+
+.follow-feed:hover {
+  background-color: rgba(113, 118, 123, 0.1);
+  transition: background-color 0.2s linear;
+  cursor: pointer;
+}
+
+.follow-suggest {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+}
+
+.suggest-id {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.suggest-id span img {
+  width: 16px;
+  height: 16px;
+  margin-left: 2px;
+}
+.suggest-username {
+  display: flex;
+  align-items: center;
+  line-height: 12px;
+  color: white;
+  font-weight: bold;
+}
+.suggest-account {
+  color: #71767b;
+}
+
+.btn-follow button {
+  border: 0;
+  outline: 0;
+  height: 30px;
+  width: 76px;
+  padding: 0 16px;
+  border-radius: 16px;
+  font-weight: bold;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.btn-follow:hover button {
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 16px;
+  transition: background-color 0.2s;
 }
