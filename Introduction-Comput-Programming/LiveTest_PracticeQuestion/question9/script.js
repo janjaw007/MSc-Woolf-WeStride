@@ -10,9 +10,8 @@ function decrypt(string) {
     } else {
       let realCharIndex = (index + 13) % 26;
       let realChar = alphabet[realCharIndex];
-
       char == char.toLowerCase()
-        ? realString.push(realChar.toLocaleLowerCase())
+        ? realString.push(realChar)
         : realString.push(realChar.toUpperCase());
     }
 
