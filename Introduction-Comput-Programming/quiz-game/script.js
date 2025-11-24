@@ -2,6 +2,8 @@ const startBtn = document.querySelector("#start-btn");
 const resetBtn = document.querySelector("#reset-btn");
 const quizQuestion = document.querySelector("#quiz-question");
 
+let score = 0;
+
 const quizQuestionArr = [
   {
     id: 1,
@@ -29,7 +31,7 @@ function startGame() {
   quizQuestionArr.forEach((quiz) => {
     quizQuestion.insertAdjacentHTML(
       "beforeend",
-      `<div class="quiz-item my-4" data-question-id="${quiz.id}">
+      `<div class="quiz-item my-4" data-question-id="${quiz.id}" id="quiz-${quiz.id}">
           <div class="mb-3">
             <h6>${quiz.questionTitle}</h6>
           </div>
@@ -51,11 +53,39 @@ function startGame() {
 }
 
 function resetGame() {
+  document.querySelector("#score").textContent = 0;
+  score = 0;
   quizQuestion.style.display = "none";
   quizQuestion.innerHTML = "";
   startBtn.style.display = "block";
   resetBtn.style.display = "none";
 }
 
-startBtn.addEventListener("click", startGame);
+startBtn.addEventListener("click", function () {
+  startGame();
+  quizQuestionArr.forEach((quiz) => {
+    document.querySelectorAll(`#quiz-${quiz.id} button`).forEach((button) => {
+      button.addEventListener("click", function () {
+        if (button.dataset.answer == quiz.questionAns) {
+          console.log("Right Answer");
+          score = score + 1;
+          document.querySelector("#score").textContent = score;
+          console.log(score);
+          document
+            .querySelectorAll(`#quiz-${quiz.id} button`)
+            .forEach((button) => {
+              button.disabled = true;
+            });
+        } else {
+          console.log("Wrong Answer");
+          document
+            .querySelectorAll(`#quiz-${quiz.id} button`)
+            .forEach((button) => {
+              button.disabled = true;
+            });
+        }
+      });
+    });
+  });
+});
 resetBtn.addEventListener("click", resetGame);
