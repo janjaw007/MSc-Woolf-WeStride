@@ -1,8 +1,18 @@
 const startBtn = document.querySelector("#start-btn");
 const resetBtn = document.querySelector("#reset-btn");
 const quizQuestion = document.querySelector("#quiz-question");
+// const scoreEL = document.querySelector("#score");
+const scoreEndgameEL = document.querySelector("#scoreEndgame");
+
+// const toastTrigger = document.getElementById("liveToastBtn");
+// const toastLiveExample = document.getElementById("liveToast");
+
+const endGame = new bootstrap.Modal(document.getElementById("endGame"));
 
 let score = 0;
+let scoreEndgame = 0;
+let answeredCount = 0;
+let gameOver = false;
 
 const quizQuestionArr = [
   {
@@ -27,6 +37,8 @@ function startGame() {
   quizQuestion.style.display = "block";
   startBtn.style.display = "none";
   resetBtn.style.display = "block";
+  // scoreEL.style.display = "block";
+  gameOver = false;
 
   quizQuestionArr.forEach((quiz) => {
     quizQuestion.insertAdjacentHTML(
@@ -53,12 +65,17 @@ function startGame() {
 }
 
 function resetGame() {
-  document.querySelector("#score").textContent = 0;
+  // scoreEL.textContent = 0;
+  scoreEndgameEL.textContent = 0;
   score = 0;
+  scoreEndgame = 0;
   quizQuestion.style.display = "none";
   quizQuestion.innerHTML = "";
   startBtn.style.display = "block";
   resetBtn.style.display = "none";
+  // scoreEL.style.display = "none";
+  answeredCount = 0;
+  gameOver = false;
 }
 
 startBtn.addEventListener("click", function () {
@@ -67,23 +84,46 @@ startBtn.addEventListener("click", function () {
     document.querySelectorAll(`#quiz-${quiz.id} button`).forEach((button) => {
       button.addEventListener("click", function () {
         if (button.dataset.answer == quiz.questionAns) {
-          console.log("Right Answer");
+          button.classList.add("btn-success");
           score = score + 1;
-          document.querySelector("#score").textContent = score;
-          console.log(score);
+          // scoreEL.textContent = score;
           document
             .querySelectorAll(`#quiz-${quiz.id} button`)
             .forEach((button) => {
               button.disabled = true;
             });
         } else {
-          console.log("Wrong Answer");
+          document
+            .querySelector(
+              `#quiz-${quiz.id} button[data-answer="${quiz.questionAns}"]`
+            )
+            .classList.remove("btn-light");
+          document
+            .querySelector(
+              `#quiz-${quiz.id} button[data-answer="${quiz.questionAns}"]`
+            )
+            .classList.add("btn-warning");
+          button.classList.add("btn-danger");
           document
             .querySelectorAll(`#quiz-${quiz.id} button`)
             .forEach((button) => {
               button.disabled = true;
             });
         }
+        answeredCount++;
+        if (answeredCount == quizQuestionArr.length) {
+          console.log(score);
+          endGame.show();
+          scoreEndgameEL.textContent = score;
+          gameOver = true;
+        }
+
+        console.log(gameOver);
+
+        // const toastBootstrap =
+        //   bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+        button.classList.remove("btn-light");
+        // toastBootstrap.show();
       });
     });
   });
