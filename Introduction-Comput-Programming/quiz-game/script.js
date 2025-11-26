@@ -133,7 +133,8 @@ function startGame() {
     }
 
     document.getElementById("timeMin").textContent = minutesRemaining;
-    document.getElementById("timeSec").textContent = secondsRemaining;
+    document.getElementById("timeSec").textContent =
+      secondsRemaining < 10 ? "0" + secondsRemaining : secondsRemaining;
   }, 1000);
 
   quizQuestion.style.display = "block";
