@@ -122,23 +122,105 @@
 //     console.log("error");
 //   });
 
-const changeBackgroundPromise = (color, delay) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      document.body.style.backgroundColor = color;
-      resolve();
-    }, delay);
-  });
-};
-
 // changeBackgroundPromise("red", 1000)
 //   .then(() => changeBackgroundPromise("green", 1000))
 //   .then(() => changeBackgroundPromise("blue", 1000));
 
-const rainbow = async () => {
-  await changeBackgroundPromise("red", 1000);
-  await changeBackgroundPromise("orange", 1000);
-  changeBackgroundPromise("green", 1000);
+// const changeBackgroundPromise = (color, delay) => {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       document.body.style.backgroundColor = color;
+//       resolve();
+//     }, delay);
+//   });
+// };
+// const rainbow = async () => {
+//   await changeBackgroundPromise("red", 1000);
+//   await changeBackgroundPromise("orange", 1000);
+//   changeBackgroundPromise("green", 1000);
+// };
+
+// rainbow();
+
+// console.log("hello docker!");
+
+// XML method
+// const req = new XMLHttpRequest();
+
+// req.open("GET", "https://swapi.dev/api/people/1");
+// req.send();
+
+// req.onload = function () {
+//   console.log("success");
+//   const res = JSON.parse(this.responseText);
+//   console.log(res);
+// };
+
+// req.onerror = function () {
+//   console.log("failed");
+//   console.log(this);
+// };
+
+//Fetch Api
+
+// fetch("https://swapi.dev/api/people/1")
+//   .then((res) => {
+//     return res.json();
+//   })
+//   .then((data) => {
+//     console.log(data);
+//     return fetch("https://swapi.dev/api/people/2");
+//   })
+//   .then((res) => {
+//     return res.json();
+//   })
+//   .then((data) => {
+//     console.log(data);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+// fetch async await
+// const makeRequest = async () => {
+//   try {
+//     const res = await fetch("https://swapi.dev/api/people/1");
+//     const data = await res.json();
+
+//     console.log(data);
+
+//     const res2 = await fetch("https://swapi.dev/api/people/2");
+//     const data2 = await res2.json();
+//     console.log(data2);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// makeRequest();
+
+// axios
+// console.log("hello world");
+// console.log(axios.get("https://swapi.dev/api/people/2"));
+
+// axios
+//   .get("https://swapi.dev/api/peoplee/2")
+//   .then((res) => {
+//     console.log(res.data);
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+const makeAxiosRequest = async (id) => {
+  try {
+    const res = await axios.get(`https://swapi.dev/api/people/${id}`);
+    console.log(res.data.name);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-rainbow();
+makeAxiosRequest(1);
+makeAxiosRequest(2);
+makeAxiosRequest(3);
