@@ -212,15 +212,60 @@
 //     console.log(err);
 //   });
 
-const makeAxiosRequest = async (id) => {
+// const makeAxiosRequest = async (id) => {
+//   try {
+//     const res = await axios.get(`https://swapi.dev/api/people/${id}`);
+//     console.log(res.data.name);
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
+// const renderJoke = async () => {
+//   const jokeString = await getDadJoke();
+//   const ulEl = document.getElementById("joke");
+//   const liEl = document.createElement("li");
+//   liEl.append(jokeString);
+//   ulEl.append(liEl);
+// };
+
+// const getDadJoke = async (id) => {
+//   try {
+//     const config = { headers: { Accept: "application/json" } };
+//     const res = await axios.get(`https://icanhazdadjoke.com/`, config);
+//     return res.data.joke;
+//   } catch (error) {
+//     return "No joke available";
+//   }
+// };
+
+// document.getElementById("btn").addEventListener("click", renderJoke);
+
+const formEl = document.querySelector("#searchForm");
+
+formEl.addEventListener("submit", function (e) {
+  e.preventDefault();
+  const search = formEl.elements.query.value;
+  getMovie(search);
+});
+
+const getMovie = async (search) => {
   try {
-    const res = await axios.get(`https://swapi.dev/api/people/${id}`);
-    console.log(res.data.name);
+    const res = await axios.get(
+      `https://api.tvmaze.com/search/shows?q=${search}`
+    );
+    renderImg(res.data);
   } catch (error) {
     console.log(error);
   }
 };
 
-makeAxiosRequest(1);
-makeAxiosRequest(2);
-makeAxiosRequest(3);
+const renderImg = (data) => {
+  for (let item of data) {
+    if (item.show.image?.medium) {
+      const imgEl = document.createElement("img");
+      imgEl.src = item.show.image.medium;
+      document.body.append(imgEl);
+    }
+  }
+};
