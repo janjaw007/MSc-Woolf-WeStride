@@ -10,13 +10,19 @@ const root = ReactDOM.createRoot(el);
 
 //4) create component
 function App() {
-  const name = "Chayanit";
-  const age = 25;
+  //logic or bussiness logic
+  //const name = "Chayanit";
+  //const age = 25;
+  const inputType = "number";
+  const inputMin = 3;
+  // display logic
   return (
     <div>
-      <h1>
-        Hi {name} is {age}!
-      </h1>
+      <input
+        type={inputType}
+        min={inputMin}
+        style={{ border: "2px solid red", fontSize: "30px" }}
+      />
     </div>
   );
 }
