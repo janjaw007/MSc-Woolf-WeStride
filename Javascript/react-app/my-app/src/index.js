@@ -10,13 +10,13 @@ const root = ReactDOM.createRoot(el);
 
 //4) create component
 function App() {
-  const text = "jjao";
-  //const date = new Date();
-  //const time = date.toLocaleTimeString();
+  const name = "Chayanit";
+  const age = 25;
   return (
     <div>
-      <h1>Hi {text}!</h1>
-      <h2>{new Date().toLocaleTimeString()}</h2>
+      <h1>
+        Hi {name} is {age}!
+      </h1>
     </div>
   );
 }
