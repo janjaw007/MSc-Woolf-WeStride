@@ -1,15 +1,21 @@
+import type { Place } from "./Place";
+
 interface SearchResponse {
   features: Feature[];
 }
 
 interface Feature {
-  geometry: {
-    coordinates: number[];
-  };
-  properties: {
-    place_id: number;
-    display_name: string;
-  };
+  geometry: Geometry;
+  properties: Properties;
+}
+
+interface Geometry {
+  coordinates: number[];
+}
+
+interface Properties {
+  place_id: number;
+  display_name: string;
 }
 
 export const search = async (term: string) => {
@@ -31,5 +37,14 @@ export const search = async (term: string) => {
   // );
 
   const data: SearchResponse = await res.json();
-  console.log(data);
+  const places: Place[] = data.features.map((feature) => {
+    return {
+      id: feature.properties.place_id,
+      name: feature.properties.display_name,
+      longitude: feature.geometry.coordinates[0],
+      latitude: feature.geometry.coordinates[1],
+    };
+  });
+
+  return places;
 };

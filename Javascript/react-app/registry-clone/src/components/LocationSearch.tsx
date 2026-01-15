@@ -12,7 +12,9 @@ function LocationSearch({ onPlaceClick }: LocationSearchProps) {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await search(term);
+    const result = await search(term);
+
+    setPlaces(result);
   };
   return (
     <div>
