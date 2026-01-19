@@ -1,0 +1,2 @@
+const useSearchForm = () => {};
+export { useSearchForm };
