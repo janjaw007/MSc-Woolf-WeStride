@@ -1,2 +1,69 @@
-const useSearchForm = () => {};
+import { pokemonDetailService, pokemonListService } from "@/service";
+import { usePokemonListStore } from "@/store/pokemonList";
+import { useEffect } from "react";
+import { useForm } from "react-hook-form";
+
+const useSearchForm = () => {
+  const {
+    handleSubmit,
+    register,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const { setFetchPokemonList, fetchPokemon, setPokemonList } =
+    usePokemonListStore();
+  const keyword = watch("keyword");
+
+  async function callData() {
+    const responseList = await pokemonListService.getPokemonList();
+    const pokeList = [];
+    setFetchPokemonList({
+      data: [],
+      loading: true,
+      error: null,
+    });
+    if (responseList.status === 200) {
+      const responseResults = responseList.data?.results;
+      for (const pokemon of responseResults) {
+        const response = await pokemonDetailService.getPokemonDetail(
+          pokemon.name,
+        );
+        const pokeData = response.data;
+        pokeList.push({ ...pokeData });
+      }
+
+      setFetchPokemonList({
+        data: pokeList,
+        loading: false,
+        error: null,
+      });
+    } else {
+      setFetchPokemonList({
+        data: [],
+        loading: false,
+        error: responseList.error,
+      });
+    }
+  }
+
+  useEffect(() => {
+    callData();
+  }, []);
+
+  useEffect(() => {
+    const data = fetchPokemon.data.filter((item) =>
+      item.name.toLowerCase().includes(keyword?.toLowerCase()),
+    );
+
+    setPokemonList({
+      data: data,
+      loading: false,
+      error: null,
+    });
+  }, [keyword]);
+
+  return {
+    fieldKeyword: register("keyword"),
+  };
+};
 export { useSearchForm };

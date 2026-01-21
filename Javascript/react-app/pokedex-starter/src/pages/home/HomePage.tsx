@@ -1,16 +1,7 @@
-import React, { useEffect } from "react";
-import { pokemonListService } from "@/service/index";
 import { SearchForm } from "@/components/SearchForm";
+import { usePokemonListStore } from "@/store/pokemonList";
 function HomePage() {
-  const callPokemonList = async () => {
-    const data = await pokemonListService.getPokemonList();
-    console.log("data:", data);
-  };
-
-  useEffect(() => {
-    callPokemonList();
-  }, []);
-
+  const { pokemon } = usePokemonListStore();
   return (
     <div className=" w-[90%] m-[auto] max-w-[1100px]">
       <div className="flex justify-center">
@@ -21,6 +12,15 @@ function HomePage() {
         />
       </div>
       <SearchForm />
+      <div>
+        {pokemon.data?.map((item) => {
+          return (
+            <div className="text-white" key={`pokemon-${item.id}`}>
+              {item.name}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

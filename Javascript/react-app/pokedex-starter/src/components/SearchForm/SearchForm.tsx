@@ -1,7 +1,9 @@
 import React from "react";
 import { generationList, typesList, sortList } from "@/utils/optionList";
+import { useSearchForm } from "./SearchForm.hook";
 
 function SearchForm() {
+  const { fieldKeyword } = useSearchForm();
   return (
     <form className="grid grid-cols-4 gap-x-[20px]">
       <div>
@@ -20,7 +22,7 @@ function SearchForm() {
               <option
                 className="capitalize"
                 key={`generation-key-${index}`}
-                value={index}
+                value={generation.name}
                 selected
               >
                 {generation.name}
@@ -87,6 +89,7 @@ function SearchForm() {
           Search
         </label>
         <input
+          {...fieldKeyword}
           id="search"
           className="block w-full px-3 py-2.5 bg-[#253641] text-white border rounded-lg border-gray-300 border-default-medium text-heading text-sm rounded-base focus:ring-[#375EAA] focus:border-[#375EAA] shadow-xs placeholder:text-body"
         />
