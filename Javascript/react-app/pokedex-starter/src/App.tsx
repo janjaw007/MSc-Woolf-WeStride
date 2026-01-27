@@ -9,7 +9,7 @@ function App() {
       Component: HomePage,
     },
     {
-      path: "/detail",
+      path: "/detail/:name",
       Component: DetailPage,
     },
   ]);
