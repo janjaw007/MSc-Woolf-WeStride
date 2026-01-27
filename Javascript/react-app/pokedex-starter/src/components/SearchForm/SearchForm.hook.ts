@@ -1,3 +1,4 @@
+import type { IPokemonDetailResponse } from "@/interface/pokemonDetail";
 import { pokemonDetailService, pokemonListService } from "@/service";
 import { usePokemonListStore } from "@/store/pokemonList";
 import { useEffect } from "react";
