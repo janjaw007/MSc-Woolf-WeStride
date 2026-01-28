@@ -71,25 +71,39 @@ function DetailPage() {
               />
             </div>
 
-            <div className=" px-2 mt-1 flex justify-between">
-              <h5 className="capitalize mb-2 text-xl font-semibold tracking-tight text-heading line-clamp-1">
-                {pokemon.data.name}
-              </h5>
-              <h5 className="mb-2 text-xl font-semibold tracking-tight text-heading line-clamp-1">
-                #{pokemon.data.id}
-              </h5>
-            </div>
+            <div className="bg-[#253641] rounded-[20px] p-4 my-5">
+              <div className=" mt-1 flex justify-between ">
+                <h5 className="capitalize mb-2 text-xl font-semibold tracking-tight text-heading line-clamp-1">
+                  {pokemon.data.name}
+                </h5>
+                <h5 className="mb-2 text-xl font-semibold tracking-tight text-heading line-clamp-1">
+                  #{pokemon.data.id}
+                </h5>
+              </div>
 
-            <div className="mt-auto px-1 py-2 flex gap-2 justify-end">
-              {pokemon.data.types.map((item) => {
-                return (
-                  <span
-                    className={`badge-type-${item.type.name} rounded-xl text-black px-3 py-2 capitalize`}
-                  >
-                    {item.type.name}
-                  </span>
-                );
-              })}
+              <div className="grid grid-cols-2">
+                <div>
+                  <div className="flex gap-x-[10px]">
+                    <div>Height</div>
+                    <div>{pokemon.data.height} m.</div>
+                  </div>
+                  <div className="flex gap-x-[10px]">
+                    <div>Weight</div>
+                    <div>{pokemon.data.weight} kg.</div>
+                  </div>
+                </div>
+                <div className="mt-auto  py-2 flex gap-2 justify-end">
+                  {pokemon.data.types.map((item) => {
+                    return (
+                      <span
+                        className={`badge-type-${item.type.name} rounded-xl text-black px-3 py-2 capitalize`}
+                      >
+                        {item.type.name}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </div>
         )}
