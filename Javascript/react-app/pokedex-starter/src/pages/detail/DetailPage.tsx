@@ -81,15 +81,15 @@ function DetailPage() {
                 </h5>
               </div>
 
-              <div className="grid grid-cols-2">
+              <div className="grid grid-cols-2 gap-x-[20px] gap-y-[30px]">
                 <div>
                   <div className="flex gap-x-[10px]">
-                    <div>Height</div>
-                    <div>{pokemon.data.height} m.</div>
+                    <div className="text-[#4CAFEB] font-semibold">Height</div>
+                    <div>{(pokemon.data.height / 10).toFixed(2)} m.</div>
                   </div>
                   <div className="flex gap-x-[10px]">
-                    <div>Weight</div>
-                    <div>{pokemon.data.weight} kg.</div>
+                    <div className="text-[#4CAFEB] font-semibold">Weight</div>
+                    <div>{(pokemon.data.weight / 10).toFixed(2)} kg.</div>
                   </div>
                 </div>
                 <div className="mt-auto  py-2 flex gap-2 justify-end">
@@ -102,6 +102,35 @@ function DetailPage() {
                       </span>
                     );
                   })}
+                </div>
+                <div>
+                  <h5 className="font-semibold ">Abilities</h5>
+                  <div className="grid grid-cols-1 gap-2 mt-2">
+                    {pokemon.data.abilities.map((abilitie) => {
+                      return (
+                        <span
+                          className={`rounded-xl text-black px-3 py-2 capitalize bg-[#4CAFEB]`}
+                        >
+                          {abilitie.ability.name}
+                        </span>
+                      );
+                    })}
+                  </div>
+                </div>
+                <div>
+                  <h5 className="font-semibold ">Stat</h5>
+                  <div className="grid grid-cols-1 gap-2 mt-2">
+                    {pokemon.data.stats.map((stat) => {
+                      return (
+                        <div className="flex gap-x-[10px] justify-between">
+                          <div className="text-[#4CAFEB] font-semibold capitalize">
+                            {stat.stat.name}
+                          </div>
+                          <div>{stat.base_stat}</div>
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               </div>
             </div>
