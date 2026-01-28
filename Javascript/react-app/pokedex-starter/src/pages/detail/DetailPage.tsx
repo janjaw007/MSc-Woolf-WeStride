@@ -2,7 +2,7 @@ import { PokemonCard } from "@/components/PokemonCard";
 import type { IPokemonDetailResponse } from "@/interface/pokemonDetail";
 import { pokemonDetailService, pokemonListService } from "@/service";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 type pokemonType = {
   data: IPokemonDetailResponse | undefined;
   loading: boolean;
@@ -56,6 +56,12 @@ function DetailPage() {
         />
       </div>
       <div className="w-[90%] max-w-[600px] m-[auto]">
+        <Link
+          to={"/"}
+          className="bg-[#4CAFEB] px-5 py-2 rounded-2xl font-semibold"
+        >
+          Back
+        </Link>
         {pokemon.data && (
           <div className="p-2  text-white flex flex-col h-full  rounded-base shadow-xs dark:border-gray-70 m-[auto]">
             <div className="bg-center aspect-square w-full bg-cover rounded-[20px] relative h-[400px]">
@@ -81,7 +87,7 @@ function DetailPage() {
                 </h5>
               </div>
 
-              <div className="grid grid-cols-2 gap-x-[20px] gap-y-[30px]">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-[20px] gap-y-[30px]">
                 <div>
                   <div className="flex gap-x-[10px]">
                     <div className="text-[#4CAFEB] font-semibold">Height</div>
@@ -92,7 +98,7 @@ function DetailPage() {
                     <div>{(pokemon.data.weight / 10).toFixed(2)} kg.</div>
                   </div>
                 </div>
-                <div className="mt-auto  py-2 flex gap-2 justify-end">
+                <div className="mt-auto  py-2 flex gap-2 sm:justify-end justify-start">
                   {pokemon.data.types.map((item) => {
                     return (
                       <span
@@ -105,7 +111,7 @@ function DetailPage() {
                 </div>
                 <div>
                   <h5 className="font-semibold ">Abilities</h5>
-                  <div className="grid grid-cols-1 gap-2 mt-2">
+                  <div className="grid sm:grid-cols-1 grid-cols-2  gap-2 mt-2">
                     {pokemon.data.abilities.map((abilitie) => {
                       return (
                         <span
