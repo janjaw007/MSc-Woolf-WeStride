@@ -56,8 +56,9 @@ const useSearchForm = () => {
         loading: false,
         error: null,
       });
+      const data = filterPokemon(pokeList, keyword, type, sort);
       setPokemonList({
-        data: pokeList,
+        data: data,
         loading: false,
         error: null,
       });
@@ -71,11 +72,12 @@ const useSearchForm = () => {
   }
 
   const filterPokemon = (
+    pokeList: IPokemonDetailResponse[],
     keyword: string,
     type: string,
     sort: "id" | "name",
   ) => {
-    const keywordFilter = fetchPokemon.data.filter((item) =>
+    const keywordFilter = pokeList.filter((item) =>
       item.name.toLowerCase().includes(keyword?.toLowerCase()),
     );
 
@@ -114,7 +116,7 @@ const useSearchForm = () => {
   }, [generation]);
 
   useEffect(() => {
-    const data = filterPokemon(keyword, type, sort);
+    const data = filterPokemon(fetchPokemon.data, keyword, type, sort);
     setPokemonList({
       data: data,
       loading: false,
