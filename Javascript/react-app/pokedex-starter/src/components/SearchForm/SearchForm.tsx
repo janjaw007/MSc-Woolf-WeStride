@@ -6,7 +6,7 @@ function SearchForm() {
   const { fieldKeyword, fieldGeneration, fieldType, fieldSort } =
     useSearchForm();
   return (
-    <form className="grid grid-cols-4 gap-x-[20px]">
+    <form className="grid grid-cols-1 lg:grid-cols-4  sm:grid-cols-2  gap-[20px]">
       <div>
         <label
           htmlFor="generation"

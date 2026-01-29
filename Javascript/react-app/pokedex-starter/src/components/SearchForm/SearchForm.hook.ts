@@ -20,7 +20,7 @@ const useSearchForm = () => {
   const sort = watch("sort");
   const keyword = watch("keyword");
 
-  async function callData(filter: {
+  async function callData(generation: {
     name: string;
     limit: number;
     offset: number;
@@ -31,8 +31,8 @@ const useSearchForm = () => {
       error: null,
     });
     const responseList = await pokemonListService.getPokemonList(
-      filter.limit,
-      filter.offset,
+      generation.limit,
+      generation.offset,
     );
     const pokeList = [];
 
@@ -70,6 +70,42 @@ const useSearchForm = () => {
     }
   }
 
+  const filterPokemon = (
+    keyword: string,
+    type: string,
+    sort: "id" | "name",
+  ) => {
+    const keywordFilter = fetchPokemon.data.filter((item) =>
+      item.name.toLowerCase().includes(keyword?.toLowerCase()),
+    );
+
+    const typeFilter =
+      type !== "all types"
+        ? keywordFilter.filter((item) => {
+            return item.types.find((f) => {
+              return f.type.name.toLocaleLowerCase().includes(type);
+            });
+          })
+        : keywordFilter;
+
+    return sortBy(typeFilter, sort);
+  };
+
+  const sortBy = (data: IPokemonDetailResponse[], type: "id" | "name") => {
+    console.log(type);
+    switch (type) {
+      case "id":
+        return data.sort((a, b) => a.id - b.id);
+      case "name":
+        return data.sort((a, b) =>
+          a.name > b.name ? 1 : b.name > a.name ? -1 : 0,
+        );
+
+      default:
+        return data.sort((a, b) => a.id - b.id);
+    }
+  };
+
   useEffect(() => {
     console.log("gene", generation);
     if (generation !== undefined) {
@@ -78,16 +114,13 @@ const useSearchForm = () => {
   }, [generation]);
 
   useEffect(() => {
-    const data = fetchPokemon.data.filter((item) =>
-      item.name.toLowerCase().includes(keyword?.toLowerCase()),
-    );
-
+    const data = filterPokemon(keyword, type, sort);
     setPokemonList({
       data: data,
       loading: false,
       error: null,
     });
-  }, [keyword]);
+  }, [keyword, type, sort]);
 
   return {
     fieldKeyword: register("keyword"),
