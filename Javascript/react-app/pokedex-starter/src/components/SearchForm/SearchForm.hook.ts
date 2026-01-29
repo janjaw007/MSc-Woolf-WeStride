@@ -1,6 +1,7 @@
 import type { IPokemonDetailResponse } from "@/interface/pokemonDetail";
 import { pokemonDetailService, pokemonListService } from "@/service";
 import { usePokemonListStore } from "@/store/pokemonList";
+import { generationList } from "@/utils/optionList";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
@@ -13,16 +14,28 @@ const useSearchForm = () => {
   } = useForm();
   const { setFetchPokemonList, fetchPokemon, setPokemonList } =
     usePokemonListStore();
+
+  const generation = watch("generation");
+  const type = watch("type");
+  const sort = watch("sort");
   const keyword = watch("keyword");
 
-  async function callData() {
-    const responseList = await pokemonListService.getPokemonList();
-    const pokeList = [];
+  async function callData(filter: {
+    name: string;
+    limit: number;
+    offset: number;
+  }) {
     setFetchPokemonList({
       data: [],
       loading: true,
       error: null,
     });
+    const responseList = await pokemonListService.getPokemonList(
+      filter.limit,
+      filter.offset,
+    );
+    const pokeList = [];
+
     if (responseList.status === 200) {
       const responseResults = responseList.data?.results;
       for (const pokemon of responseResults) {
@@ -58,8 +71,11 @@ const useSearchForm = () => {
   }
 
   useEffect(() => {
-    callData();
-  }, []);
+    console.log("gene", generation);
+    if (generation !== undefined) {
+      callData(generationList[generation]);
+    }
+  }, [generation]);
 
   useEffect(() => {
     const data = fetchPokemon.data.filter((item) =>
@@ -75,6 +91,9 @@ const useSearchForm = () => {
 
   return {
     fieldKeyword: register("keyword"),
+    fieldGeneration: register("generation"),
+    fieldType: register("type"),
+    fieldSort: register("sort"),
   };
 };
 export { useSearchForm };
